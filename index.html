@@ -137,8 +137,7 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2" id="repos">
                 <h2>My Music</h2>
-                <p><iframe class="iframe" width="100%" height="465" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https://soundcloud.com/jlchntoz/&amp;auto_play=false&amp;buying=true&amp;liking=true&amp;download=true&amp;sharing=true&amp;show_artwork=true&amp;show_comments=true&amp;show_playcount=true&amp;show_user=true&amp;hide_related=false&amp;visual=true&amp;start_track=0&amp;callback=true">
-      </iframe></p>
+                <p id="sounds"></p>
             </div>
         </div>
     </section>
@@ -192,72 +191,10 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="js/grayscale.js"></script>
+
+    <!-- Additional JavaScript -->
+    <script src="js/main.js"></script>
     
-    <script>
-      $(function() {
-        function createghbtn(args) {
-          return $("<iframe></iframe>")
-          .attr({
-            allowtransparency: true,
-            frameborder: 0,
-            scrolling: 0,
-            width: args.width ? args.width : 62,
-            height: args.size && args.size == "large" ? 30 : 20,
-            src: "http://ghbtns.com/github-btn.html?" + $.param(args)
-          });
-        }
-        $.ajax({
-          url: "https://api.github.com/users/JLChnToZ/repos",
-          data: {
-            sort: "updated"
-          },
-          dataType: "json",
-          success: function(d) {
-            $.each(d, function(i) {
-              var that = this;
-              if(this.name == "JLChnToZ.github.io")
-                return true;
-              $("#repos").append(
-                $("<div></div>").append(
-                  $("<big></big>").append(function() {
-                    var r = $("<a></a>");
-                    if(that.fork)
-                      r.addClass("text-muted")
-                      .append(
-                        $("<span></span>")
-                        .addClass("fa fa-code-fork")
-                      );
-                    return r.attr("href", that.homepage && that.homepage.length > 0 ? that.homepage : that.html_url)
-                    .append(" "+that.name);
-                  })
-                )
-                .append(" - ")
-                .append(function() {
-                  if(that.fork)
-                    return  $("<small></small>")
-                    .append(
-                      $("<em></em>")
-                      .addClass("text-muted")
-                      .append(that.description)
-                    );
-                  else
-                    return $("<small></small>")
-                    .text(that.description);
-                })
-                .append(" ")
-                .append(createghbtn({
-                  user: "JLChnToZ",
-                  repo: this.name,
-                  type: "watch",
-                  count: true,
-                  width: 95
-                }))
-              );
-            });
-          }
-        });
-      });
-    </script>
 
 </body>
 
