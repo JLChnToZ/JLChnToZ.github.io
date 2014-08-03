@@ -195,6 +195,17 @@
     
     <script>
       $(function() {
+        function createghbtn(args) {
+          return $("<iframe></iframe>")
+          .attr({
+            allowtransparency: true,
+            frameborder: 0,
+            scrolling: 0,
+            width: args.width ? args.width : 62,
+            height: args.size && args.size == "large" ? 30 : 20,
+            src: "http://ghbtns.com/github-btn.html?" + $.param(args)
+          });
+        }
         $.ajax({
           url: "https://api.github.com/users/JLChnToZ/repos",
           data: {
@@ -233,6 +244,14 @@
                     return $("<small></small>")
                     .text(that.description);
                 })
+                .append(" ")
+                .append(createghbtn({
+                  user: "JLChnToZ",
+                  repo: this.name,
+                  type: "fork",
+                  count: true,
+                  width: 95
+                }))
               );
             });
           }
