@@ -136,14 +136,16 @@ a:focus {
     width: 100%;
     height: auto;
     padding: 100px 0;
+    margin: 0 auto;
     text-align: center;
     color: #fff;
-    background: url(../img/intro-bg.jpg) no-repeat bottom center scroll;
+    background: url(../img/intro-bg.jpg) 50% 0 fixed;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;
     -o-background-size: cover;
+    box-shadow: inset 0 0 50px #000;
 }
 
 .intro .intro-body {

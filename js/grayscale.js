@@ -29,9 +29,21 @@ $('.navbar-collapse ul li a').click(function() {
     $('.navbar-toggle:visible').click();
 });
 
+$(function() {
+   $window = $(window);
+   $('header[data-type="background"]').each(function() {
+     var $scroll = $(this);
+      $window.scroll(function() {                       
+        var yPos = -($window.scrollTop() / $scroll.data('speed'));
+        var coords = '50% '+ yPos + 'px';
+        $scroll.css({ backgroundPosition: coords });
+      });
+   });
+});
+
 // Google Maps Scripts
 // When the window has finished loading create our google map below
-google.maps.event.addDomListener(window, 'load', init);
+/*google.maps.event.addDomListener(window, 'load', init);
 
 function init() {
     // Basic options for a simple Google Map
@@ -175,4 +187,4 @@ function init() {
         map: map,
         icon: image
     });
-}
+}*/
