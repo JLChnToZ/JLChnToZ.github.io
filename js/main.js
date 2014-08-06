@@ -1,15 +1,4 @@
 $(function() {
-  function createghbtn(args) {
-    return $("<iframe></iframe>")
-    .attr({
-      allowtransparency: true,
-      frameborder: 0,
-      scrolling: 0,
-      width: args.width ? args.width : 62,
-      height: args.size && args.size == "large" ? 30 : 20,
-      src: "http://ghbtns.com/github-btn.html?" + $.param(args)
-    });
-  }
   function createscwidget(args) {
     return $("<iframe></iframe>")
     .attr({
@@ -60,13 +49,17 @@ $(function() {
               .text(that.description);
           })
           .append(" ")
-          .append(createghbtn({
-            user: "JLChnToZ",
-            repo: this.name,
-            type: "watch",
-            count: true,
-            width: 95
-          }))
+          .append(
+            $("<a></a>")
+            .addClass("btn btn-possitive btn-sm")
+            .attr("href", that.html_url + "/stargazers")
+            .append(
+              $("<span></span>")
+              .addClass("glyphicon glyphicon-star")
+            )
+            .append(" ")
+            .append(that.stargazers_count)
+          )
         );
       });
     }
