@@ -51,7 +51,7 @@ $(function() {
           .append(" ")
           .append(
             $("<a></a>")
-            .addClass("btn btn-possitive btn-sm")
+            .addClass("btn btn-default btn-sm")
             .attr("href", that.html_url + "/stargazers")
             .append(
               $("<span></span>")
